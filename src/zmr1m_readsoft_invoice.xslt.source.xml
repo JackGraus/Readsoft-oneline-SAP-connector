@@ -1,0 +1,294 @@
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sap="http://www.sap.com/sapxsl" version="1.0">
+  <xsl:strip-space elements="*"/>
+  <xsl:output indent="yes"/>
+
+  <xsl:template name="ImageSegment">
+    <xsl:param name="Image"/>
+
+    <xsl:if test="$Image!=''">
+      <!-- Image segment -->
+      <Z1BASE64>
+        <LINE>
+          <xsl:value-of select="substring($Image,1,1000)"/>
+        </LINE>
+      </Z1BASE64>
+
+      <!-- Image segments remaining -->
+      <xsl:call-template name="ImageSegment">
+        <xsl:with-param name="Image" select="substring($Image,1000+1)"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="LongTextSegment">
+    <xsl:param name="Text"/>
+    <xsl:param name="Format"/>
+
+    <xsl:if test="$Text!=''">
+      <!-- Text segment -->
+      <E1EDKT2>
+        <TDLINE>
+          <xsl:value-of select="substring($Text,1,70)"/>
+        </TDLINE>
+        <TDFORMAT>
+          <xsl:value-of select="$Format"/>
+        </TDFORMAT>
+      </E1EDKT2>
+
+      <!-- Text segments remaining -->
+      <xsl:call-template name="LongTextSegment">
+        <xsl:with-param name="Text" select="substring($Text,70+1)"/>
+        <xsl:with-param name="Format" select="'='"/>
+      </xsl:call-template>
+    </xsl:if>
+  </xsl:template>
+
+  <xsl:template name="LongText">
+    <xsl:param name="Text"/>
+
+    <xsl:choose>
+      <xsl:when test="contains($Text,'&#xD;&#xA;')">
+        <!-- Text segment line -->
+        <xsl:call-template name="LongTextSegment">
+          <xsl:with-param name="Text" select="substring-before($Text,'&#xD;&#xA;')"/>
+          <xsl:with-param name="Format" select="'*'"/>
+        </xsl:call-template>
+
+        <!-- Text segment lines remaining -->
+        <xsl:call-template name="LongText">
+          <xsl:with-param name="Text" select="substring-after($Text,'&#xD;&#xA;')"/>
+        </xsl:call-template>
+      </xsl:when>
+
+      <xsl:otherwise>
+        <!-- Text segment line -->
+        <xsl:call-template name="LongTextSegment">
+          <xsl:with-param name="Text" select="$Text"/>
+          <xsl:with-param name="Format" select="'*'"/>
+        </xsl:call-template>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template match="*" name="Invoice">
+    <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+      <asx:values>
+        <xsl:for-each select="/Batches/Batch">
+          <IDOC>
+            <E1EDK01>
+              <xsl:for-each select="Documents/Document">
+                <E1EDK01>
+                  <CURCY>
+                    <xsl:value-of select="HeaderFields/HeaderField[Type='invoicecurrency']/Text"/>
+                  </CURCY>
+                  <KUNDEUINR>
+                    <xsl:value-of select="HeaderFields/HeaderField[Type='suppliervatregistrationnumber']/Text"/>
+                  </KUNDEUINR>
+
+                  <!-- Image -->
+                  <Z1LINK>
+                    <xsl:if test="EmbeddedImage!=''">
+                      <NAME>
+                        <xsl:value-of select="OriginalFilename"/>
+                      </NAME>
+                      <TYPE>
+                        <xsl:value-of select="substring-after(Filename,'.')"/>
+                      </TYPE>
+                      <Z1BASE64>
+                        <xsl:call-template name="ImageSegment">
+                          <xsl:with-param name="Image" select="EmbeddedImage/Data"/>
+                        </xsl:call-template>
+                      </Z1BASE64>
+                    </xsl:if>
+                  </Z1LINK>
+
+                  <!-- Partner -->
+                  <E1EDKA1>
+                    <!-- Payee -->
+                    <xsl:for-each select="Parties/Party[Type='buyer']">
+                      <E1EDKA1>
+                        <PARVW>RE</PARVW>
+                        <PARTN>
+                          <xsl:value-of select="OrganizationNumber"/>
+                        </PARTN>
+                        <NAME1>
+                          <xsl:value-of select="substring(Name,1,35)"/>
+                        </NAME1>
+                      </E1EDKA1>
+                    </xsl:for-each>
+
+                    <!-- Payer -->
+                    <xsl:for-each select="Parties/Party[Type='supplier']">
+                      <E1EDKA1>
+                        <PARVW>RS</PARVW>
+                        <PARTN>
+                          <xsl:value-of select="ExternalId"/>
+                        </PARTN>
+                        <NAME1>
+                          <xsl:value-of select="substring(Name,1,35)"/>
+                        </NAME1>
+                      </E1EDKA1>
+                    </xsl:for-each>
+                  </E1EDKA1>
+
+                  <!-- Reference -->
+                  <E1EDK02>
+                    <!-- Order -->
+                    <xsl:for-each select="HeaderFields/HeaderField[Type='invoiceordernumber'][Text!='']">
+                      <E1EDK02>
+                        <QUALF>001</QUALF>
+                        <BELNR>
+                          <xsl:value-of select="Text"/>
+                        </BELNR>
+                      </E1EDK02>
+                    </xsl:for-each>
+
+                    <!-- Invoice -->
+                    <xsl:for-each select="HeaderFields/HeaderField[Type='invoicenumber'][Text!='']">
+                      <E1EDK02>
+                        <QUALF>009</QUALF>
+                        <BELNR>
+                          <xsl:value-of select="Text"/>
+                        </BELNR>
+                      </E1EDK02>
+                    </xsl:for-each>
+                  </E1EDK02>
+
+                  <!-- Date -->
+                  <E1EDK03>
+                    <!-- Invoice data -->
+                    <xsl:for-each select="HeaderFields/HeaderField[Type='invoicedate']">
+                      <E1EDK03>
+                        <IDDAT>012</IDDAT>
+                        <DATUM>
+                          <xsl:value-of select="Text"/>
+                        </DATUM>
+                      </E1EDK03>
+                    </xsl:for-each>
+                  </E1EDK03>
+
+                  <!-- VAT -->
+                  <E1EDK04>
+                    <E1EDK04>
+                      <MWSKZ>VAT</MWSKZ>
+                      <xsl:for-each select="HeaderFields/HeaderField[Type='invoicetotalvatratepercent']">
+                        <MSATZ>
+                          <xsl:value-of select="Text"/>
+                        </MSATZ>
+                      </xsl:for-each>
+                      <xsl:for-each select="HeaderFields/HeaderField[Type='invoicetotalvatamount']">
+                        <MWSBT>
+                          <xsl:value-of select="Text"/>
+                        </MWSBT>
+                      </xsl:for-each>
+                    </E1EDK04>
+                  </E1EDK04>
+
+                  <!-- Bank account -->
+                  <E1EDK28>
+                    <xsl:for-each select="HeaderFields/HeaderField[Type='supplieraccountnumber1']">
+                      <E1EDK28>
+                        <ACNUM>
+                          <xsl:value-of select="Text"/>
+                        </ACNUM>
+                      </E1EDK28>
+                    </xsl:for-each>
+
+                    <!-- Bank account IBAN -->
+                    <xsl:for-each select="HeaderFields/HeaderField[Type='supplieriban1']">
+                      <E1EDK28>
+                        <BIBAN>
+                          <xsl:value-of select="Text"/>
+                        </BIBAN>
+                      </E1EDK28>
+                    </xsl:for-each>
+                  </E1EDK28>
+
+                  <!-- Header text -->
+                  <E1EDKT1>
+                    <xsl:if test="History/Item[Status='DocumentCommentAdded']">
+                      <E1EDKT1>
+                        <E1EDKT2>
+                          <xsl:for-each select="History/Item[Status='DocumentCommentAdded']">
+                            <xsl:call-template name="LongText">
+                              <xsl:with-param name="Text" select="Comment"/>
+                            </xsl:call-template>
+                          </xsl:for-each>
+                        </E1EDKT2>
+                      </E1EDKT1>
+                    </xsl:if>
+                  </E1EDKT1>
+
+                  <xsl:for-each select="Tables/Table[Type='LineItem']">
+                    <xsl:for-each select="TableRows/TableRow">
+                      <E1EDP01>
+                        <!-- Item data -->
+                        <xsl:for-each select="ItemField[Type='LIT_DeliveredQuantity']">
+                          <E1EDP01>
+                            <MENGE>
+                              <xsl:value-of select="Text"/>
+                            </MENGE>
+                          </E1EDP01>
+                        </xsl:for-each>
+
+                        <!-- Item price -->
+                        <E1EDP05>
+                          <xsl:for-each select="ItemField[Type='LIT_UnitPriceAmount']">
+                            <E1EDP05>
+                              <BETRG>
+                                <xsl:value-of select="Text"/>
+                              </BETRG>
+                              <!-- Transaction currency -->
+                              <CURTP>00</CURTP>
+                            </E1EDP05>
+                          </xsl:for-each>
+                        </E1EDP05>
+
+                        <!-- Item value -->
+                        <E1EDP26>
+                          <xsl:for-each select="ItemField[Type='LIT_VatExcludedAmount']">
+                            <E1EDP26>
+                              <!-- Net -->
+                              <QUALF>003</QUALF>
+                              <BETRG>
+                                <xsl:value-of select="Text"/>
+                              </BETRG>
+                            </E1EDP26>
+                          </xsl:for-each>
+                        </E1EDP26>
+
+                      </E1EDP01>
+                    </xsl:for-each>
+                  </xsl:for-each>
+
+                  <!-- Total -->
+                  <E1EDS01>
+                    <!-- Net -->
+                    <xsl:for-each select="HeaderFields/HeaderField[Type='invoicetotalvatexcludedamount']">
+                      <E1EDS01>
+                        <SUMID>010</SUMID>
+                        <SUMME>
+                          <xsl:value-of select="Text"/>
+                        </SUMME>
+                      </E1EDS01>
+                    </xsl:for-each>
+
+                    <!-- Gross -->
+                    <xsl:for-each select="HeaderFields/HeaderField[Type='invoicetotalvatincludedamount']">
+                      <E1EDS01>
+                        <SUMID>011</SUMID>
+                        <SUMME>
+                          <xsl:value-of select="Text"/>
+                        </SUMME>
+                      </E1EDS01>
+                    </xsl:for-each>
+                  </E1EDS01>
+                </E1EDK01>
+              </xsl:for-each>
+            </E1EDK01>
+          </IDOC>
+        </xsl:for-each>
+      </asx:values>
+    </asx:abap>
+  </xsl:template>
+</xsl:transform>

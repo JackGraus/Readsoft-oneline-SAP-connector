@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Logistics invoice central</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>CLASS_CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create class instance</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>CREATE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create invoice</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>EDIDS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>IDOC status record</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>GO_ME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Logistics invoice central</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>GT_TLINE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>List of SAPscript Lines</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>GV_DATA</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Attchment binary</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>GV_OBJ_DES</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Short description of contents</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>GV_OBJ_TP</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Code for document class</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>INSTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return class instance</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMRMH</CLSNAME>
+     <CMPNAME>SET</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Link document</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

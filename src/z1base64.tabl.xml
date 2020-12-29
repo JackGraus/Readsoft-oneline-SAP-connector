@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_TABL" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD02V>
+    <TABNAME>Z1BASE64</TABNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <TABCLASS>INTTAB</TABCLASS>
+    <DDTEXT>IDoc: Base 64 code</DDTEXT>
+    <MASTERLANG>E</MASTERLANG>
+    <EXCLASS>1</EXCLASS>
+   </DD02V>
+   <DD03P_TABLE>
+    <DD03P>
+     <TABNAME>Z1BASE64</TABNAME>
+     <FIELDNAME>LINE</FIELDNAME>
+     <DDLANGUAGE>E</DDLANGUAGE>
+     <POSITION>0001</POSITION>
+     <ADMINFIELD>0</ADMINFIELD>
+     <INTTYPE>C</INTTYPE>
+     <INTLEN>002000</INTLEN>
+     <DATATYPE>CHAR</DATATYPE>
+     <LENG>001000</LENG>
+     <MASK>  CHAR</MASK>
+    </DD03P>
+   </DD03P_TABLE>
+   <SEGMENT_DEFINITION>
+    <item>
+     <SEGMENTHEADER>
+      <SEGTYP>Z1BASE64</SEGTYP>
+      <DESCRP>IDoc: Base 64 code</DESCRP>
+     </SEGMENTHEADER>
+     <SEGMENTDEFINITION>
+      <SEGTYP>Z1BASE64</SEGTYP>
+      <SEGDEF>Z2BASE64000</SEGDEF>
+      <RELEASED>740</RELEASED>
+      <CLOSED>X</CLOSED>
+      <FIELDNUM>0001</FIELDNUM>
+      <EXPLENG>1000</EXPLENG>
+     </SEGMENTDEFINITION>
+     <SEGMENTSTRUCTURES>
+      <EDISEGSTRU>
+       <SEGTYP>Z1BASE64</SEGTYP>
+       <POS>0001</POS>
+       <FIELDNAME>LINE</FIELDNAME>
+       <ROLLNAME>IDOCLINE</ROLLNAME>
+       <EXPLENG>1000</EXPLENG>
+      </EDISEGSTRU>
+     </SEGMENTSTRUCTURES>
+    </item>
+   </SEGMENT_DEFINITION>
+  </asx:values>
+ </asx:abap>
+</abapGit>

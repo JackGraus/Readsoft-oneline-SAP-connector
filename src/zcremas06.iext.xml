@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_IEXT" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <IEXT>
+    <ATTRIBUTES>
+     <DESCRP>Vendor master data distribution</DESCRP>
+     <CLOSED>X</CLOSED>
+     <RELEASED>740</RELEASED>
+     <FIRSTTYP>ZCREMAS06</FIRSTTYP>
+     <LASTTYP>ZCREMAS06</LASTTYP>
+     <IDOCTYP>CREMAS06</IDOCTYP>
+    </ATTRIBUTES>
+    <T_SYNTAX>
+     <EDI_IAPI03>
+      <REFSEGTYP>E1LFA1M</REFSEGTYP>
+      <NR>0001</NR>
+      <SEGTYP>Z1LFA1M</SEGTYP>
+      <OCCMIN>0000000001</OCCMIN>
+      <OCCMAX>0000000001</OCCMAX>
+      <HLEVEL>01</HLEVEL>
+     </EDI_IAPI03>
+     <EDI_IAPI03>
+      <REFSEGTYP>E1LFB1M</REFSEGTYP>
+      <NR>0001</NR>
+      <SEGTYP>Z1LFB1M</SEGTYP>
+      <OCCMIN>0000000001</OCCMIN>
+      <OCCMAX>0000000001</OCCMAX>
+      <HLEVEL>01</HLEVEL>
+     </EDI_IAPI03>
+     <EDI_IAPI03>
+      <REFSEGTYP>E1LFB1M</REFSEGTYP>
+      <NR>0002</NR>
+      <SEGTYP>Z1LFB1M_PAYMENT_TERM</SEGTYP>
+      <OCCMIN>0000000001</OCCMIN>
+      <OCCMAX>0000009999</OCCMAX>
+      <HLEVEL>02</HLEVEL>
+     </EDI_IAPI03>
+    </T_SYNTAX>
+   </IEXT>
+  </asx:values>
+ </asx:abap>
+</abapGit>

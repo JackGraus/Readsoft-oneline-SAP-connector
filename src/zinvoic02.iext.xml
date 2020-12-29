@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_IEXT" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <IEXT>
+    <ATTRIBUTES>
+     <DESCRP>Invoice/Billing document</DESCRP>
+     <CLOSED>X</CLOSED>
+     <RELEASED>740</RELEASED>
+     <FIRSTTYP>ZINVOIC02</FIRSTTYP>
+     <LASTTYP>ZINVOIC02</LASTTYP>
+     <IDOCTYP>INVOIC02</IDOCTYP>
+    </ATTRIBUTES>
+    <T_SYNTAX>
+     <EDI_IAPI03>
+      <REFSEGTYP>E1EDK01</REFSEGTYP>
+      <NR>0001</NR>
+      <SEGTYP>Z1LINK</SEGTYP>
+      <PARFLG>X</PARFLG>
+      <OCCMIN>0000000001</OCCMIN>
+      <OCCMAX>0000000001</OCCMAX>
+      <HLEVEL>01</HLEVEL>
+     </EDI_IAPI03>
+     <EDI_IAPI03>
+      <REFSEGTYP>E1EDK01</REFSEGTYP>
+      <NR>0002</NR>
+      <SEGTYP>Z1BASE64</SEGTYP>
+      <PARSEG>Z1LINK</PARSEG>
+      <PARPNO>0001</PARPNO>
+      <MUSTFL>X</MUSTFL>
+      <OCCMIN>0000000001</OCCMIN>
+      <OCCMAX>9999999999</OCCMAX>
+      <HLEVEL>02</HLEVEL>
+     </EDI_IAPI03>
+    </T_SYNTAX>
+   </IEXT>
+  </asx:values>
+ </asx:abap>
+</abapGit>

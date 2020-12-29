@@ -1,0 +1,47 @@
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sap="http://www.sap.com/sapxsl" version="1.0">
+  <xsl:strip-space elements="*"/>
+  <xsl:output indent="yes"/>
+
+  <xsl:template match="*" name="SupplierBankAccount">
+    <SupplierBankAccounts xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
+      <xsl:for-each select="//IDOC/E1LFA1M/item/E1LFB1M/item">
+        <xsl:for-each select="../../E1LFBKM/E1LFBKM">
+          <SupplierBankAccount>
+            <BankName>
+              <xsl:value-of select="BANKA"/>
+            </BankName>
+            <SupplierNumber>
+              <xsl:value-of select="LIFNR"/>
+            </SupplierNumber>
+
+            <xsl:if test="BANKL!='' and SWIFT=''">
+              <BankNumberType>clearingnumber</BankNumberType>
+              <BankNumber>
+                <xsl:value-of select="BANKL"/>
+              </BankNumber>
+            </xsl:if>
+            <xsl:if test="SWIFT!=''">
+              <BankNumberType>bic</BankNumberType>
+              <BankNumber>
+                <xsl:value-of select="SWIFT"/>
+              </BankNumber>
+            </xsl:if>
+
+            <xsl:if test="BANKN!='' and IBAN=''">
+              <AccountNumber>
+                <xsl:value-of select="BANKN"/>
+              </AccountNumber>
+            </xsl:if>
+            <xsl:if test="IBAN!=''">
+              <AccountNumberType>iban</AccountNumberType>
+              <AccountNumber>
+                <xsl:value-of select="IBAN"/>
+              </AccountNumber>
+            </xsl:if>
+
+          </SupplierBankAccount>
+        </xsl:for-each>
+      </xsl:for-each>
+    </SupplierBankAccounts>
+  </xsl:template>
+</xsl:transform>

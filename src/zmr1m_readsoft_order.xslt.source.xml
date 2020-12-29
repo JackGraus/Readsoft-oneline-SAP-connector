@@ -1,0 +1,57 @@
+<?sap.transform simple?>
+<tt:transform xmlns:tt="http://www.sap.com/transformation-templates">
+  <tt:root name="IDOC"/>
+  <tt:template>
+    <PurchaseOrders xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" tt:ref="IDOC">
+      <PurchaseOrder tt:ref="E1EDK01">
+        <OrderNumber tt:value-ref="BELNR"/>
+        <tt:loop ref="E1EDKA1">
+          <tt:cond check="PARVW='LF'">
+            <SupplierNumber tt:value-ref="PARTN"/>
+          </tt:cond>
+        </tt:loop>
+        <CurrencyCode tt:value-ref="HWAER"/>
+        <DateCreated>2012-10-29T11:05:01</DateCreated>
+        <tt:loop ref="E1EDKA1">
+          <tt:cond check="PARVW='WE'">
+            <ContactName tt:value-ref="NAME1"/>
+          </tt:cond>
+        </tt:loop>
+        <Description>Some text</Description>
+        <StatusText>Received</StatusText>
+        <Lines>
+          <tt:loop ref="E1EDP01">
+            <PurchaseOrderLine>
+              <OrderLineNumber tt:value-ref="POSEX"/>
+              <tt:loop ref="E1EDP19">
+                <tt:cond check="QUALF='001'">
+                  <ArticleNumber tt:value-ref="IDTNR"/>
+                </tt:cond>
+              </tt:loop>
+              <tt:loop ref="E1EDP19">
+                <tt:cond check="QUALF='002'">
+                  <SupplierArticleNumber tt:value-ref="IDTNR"/>
+                </tt:cond>
+              </tt:loop>
+              <tt:loop ref="E1EDP19">
+                <tt:cond check="QUALF='001'">
+                  <ArticleNumber tt:value-ref="KTEXT"/>
+                </tt:cond>
+              </tt:loop>
+              <Quantity tt:value-ref="MENGE"/>
+              <Unit tt:value-ref="MENEE"/>
+              <UnitPrice tt:value-ref="VPREI"/>
+              <RowTotalAmountVatExcluded tt:value-ref="NETWR"/>
+              <PriceUnit tt:value-ref="PEINH"/>
+            </PurchaseOrderLine>
+          </tt:loop>
+        </Lines>
+        <tt:loop ref="E1EDKA1">
+          <tt:cond check="PARVW='LF'">
+            <SupplierName tt:value-ref="NAME1"/>
+          </tt:cond>
+        </tt:loop>
+      </PurchaseOrder>
+    </PurchaseOrders>
+  </tt:template>
+</tt:transform>

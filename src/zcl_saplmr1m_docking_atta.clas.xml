@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_CLAS" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <VSEOCLASS>
+    <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+    <LANGU>E</LANGU>
+    <DESCRIPT>Logistics invoice attachment docking</DESCRIPT>
+    <STATE>1</STATE>
+    <CLSCCINCL>X</CLSCCINCL>
+    <FIXPT>X</FIXPT>
+    <UNICODE>X</UNICODE>
+   </VSEOCLASS>
+   <DESCRIPTIONS>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>CLASS_CONSTRUCTOR</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create class instance</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>DOCKING</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Create docking container when required</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>DOCUMENT</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get and set archivelink document in docking viewer</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>GO_CONTAINER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Docking Control Container</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>GO_HTML_VIEWER</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>HTML Control Proxy Class</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>GO_ME</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Logistics invoice</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>GS_LINK</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>SOBL: Runtime Relationship Record</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>INSTANCE</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Return class instance</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>LINK</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Get archivelink</DESCRIPT>
+    </SEOCOMPOTX>
+    <SEOCOMPOTX>
+     <CLSNAME>ZCL_SAPLMR1M_DOCKING_ATTA</CLSNAME>
+     <CMPNAME>PROCESS</CMPNAME>
+     <LANGU>E</LANGU>
+     <DESCRIPT>Process after input</DESCRIPT>
+    </SEOCOMPOTX>
+   </DESCRIPTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

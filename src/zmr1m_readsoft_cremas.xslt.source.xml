@@ -1,0 +1,61 @@
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:sap="http://www.sap.com/sapxsl" version="1.0">
+  <xsl:strip-space elements="*"/>
+  <xsl:output indent="yes"/>
+
+  <xsl:template match="*" name="Supplier">
+    <Suppliers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <xsl:for-each select="//IDOC/E1LFA1M/item/E1LFB1M/item">
+        <Supplier>
+          <SupplierNumber>
+            <xsl:value-of select="LIFNR"/>
+          </SupplierNumber>
+          <Name>
+            <xsl:value-of select="../../NAME1"/>
+          </Name>
+          <Description>
+            <xsl:value-of select="../../Z1LFA1M/ADDR_SHORT"/>
+          </Description>
+          <TaxRegistrationNumber>
+            <xsl:value-of select="../../STCEG"/>
+          </TaxRegistrationNumber>
+          <OrganizationNumber>
+            <xsl:value-of select="BUKRS"/>
+          </OrganizationNumber>
+          <Street>
+            <xsl:value-of select="../../STRAS"/>
+          </Street>
+          <PostalCode>
+            <xsl:value-of select="../../PSTLZ"/>
+          </PostalCode>
+          <City>
+            <xsl:value-of select="../../ORT01"/>
+          </City>
+          <CountryName>
+            <xsl:value-of select="../../LAND1"/>
+          </CountryName>
+          <PaymentTerm>
+            <xsl:value-of select="Z1LFB1M/ZTERM_TEXT"/>
+          </PaymentTerm>
+          <PaymentMethod>
+            <xsl:value-of select="Z1LFB1M_PAYMENT_TERM/Z1LFB1M_PAYMENT_TERM/TEXT"/>
+          </PaymentMethod>
+          <CurrencyCode>
+            <xsl:value-of select="../../Z1LFA1M/WAERS"/>
+          </CurrencyCode>
+          <xsl:if test="SPERR='X'">
+            <Blocked>1</Blocked>
+          </xsl:if>
+          <TelephoneNumber>
+            <xsl:value-of select="../../TELF1"/>
+          </TelephoneNumber>
+          <FaxNumber>
+            <xsl:value-of select="../../TELFX"/>
+          </FaxNumber>
+          <TaxCode>
+            <xsl:value-of select="../../E1LFA1A/STENR"/>
+          </TaxCode>
+        </Supplier>
+      </xsl:for-each>
+    </Suppliers>
+  </xsl:template>
+</xsl:transform>

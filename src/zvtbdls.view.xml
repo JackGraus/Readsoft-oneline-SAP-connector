@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_VIEW" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD25V>
+    <VIEWNAME>ZVTBDLS</VIEWNAME>
+    <AS4LOCAL>A</AS4LOCAL>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <AGGTYPE>V</AGGTYPE>
+    <ROOTTAB>TBDLS</ROOTTAB>
+    <DDTEXT>Logical system</DDTEXT>
+    <VIEWCLASS>C</VIEWCLASS>
+    <CUSTOMAUTH>C</CUSTOMAUTH>
+    <GLOBALFLAG>X</GLOBALFLAG>
+   </DD25V>
+   <DD26V_TABLE>
+    <DD26V>
+     <VIEWNAME>ZVTBDLS</VIEWNAME>
+     <TABNAME>TBDLS</TABNAME>
+     <TABPOS>0001</TABPOS>
+     <FORTABNAME>TBDLS</FORTABNAME>
+    </DD26V>
+   </DD26V_TABLE>
+   <DD27P_TABLE>
+    <DD27P>
+     <VIEWFIELD>LOGSYS</VIEWFIELD>
+     <TABNAME>TBDLS</TABNAME>
+     <FIELDNAME>LOGSYS</FIELDNAME>
+     <KEYFLAG>X</KEYFLAG>
+     <RDONLY>R</RDONLY>
+    </DD27P>
+    <DD27P>
+     <VIEWFIELD>HOST</VIEWFIELD>
+     <TABNAME>TBDLS</TABNAME>
+     <FIELDNAME>HOST</FIELDNAME>
+    </DD27P>
+    <DD27P>
+     <VIEWFIELD>USER</VIEWFIELD>
+     <TABNAME>TBDLS</TABNAME>
+     <FIELDNAME>USER</FIELDNAME>
+    </DD27P>
+    <DD27P>
+     <VIEWFIELD>PASSWD</VIEWFIELD>
+     <TABNAME>TBDLS</TABNAME>
+     <FIELDNAME>PASSWD</FIELDNAME>
+    </DD27P>
+   </DD27P_TABLE>
+  </asx:values>
+ </asx:abap>
+</abapGit>
